@@ -1,0 +1,65 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Earthquakes Around the World</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+  </head>
+  <body style="background-image: url('images/earth_background.jpg'); background-size: cover;">
+    <div class="wrapper">
+      <header class="header">
+        <h3>Search Earthquakes</h3>
+      </header>
+      <div class="container">
+        <div class="left_section box">
+          <h3>Form Inputs</h3>
+          <form class="box main_form">
+            <button type="button" id="data_load">Load County Data</button>
+            <button type="button" id="data_clear">Clear County Data</button>
+            <div>
+              <label for="resto">Search by locations</label>
+              <input type="text" name="resto" id="resto">
+            </div>
+            <div class="buttons">
+              <button type="button" id="generate">Generate List</button>
+            </div>
+          </form>
+        </div>
+        <div class="right_section box">
+          <h3>Earthquake Display</h3>
+          <div id="map" class="box"></div>
+          <ol class="box" id="restaurant_list">
+            A list of local restaurants
+          </ol>
+          <div class="lds-ellipsis" id="data_load_animation">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <footer class="footer">
+        GitHub:
+        <a
+          href="https://github.com/KyunghoLim/INST377_Final_Project"
+          target="_blank"
+          rel="noopener noreferrer"
+          >KyunghoLim</a
+        >
+      </footer>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
