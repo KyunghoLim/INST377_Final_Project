@@ -22,8 +22,18 @@
         <div class="left_section box">
           <h3>Search</h3>
           <form class="leftbox main_form">
-            <button type="button" id="select_option">Select</button>
-            
+            <div class="dropdown">
+                <label>Choose Keyword Option</label>
+                <button onclick="mainEvent()" class="dropbtn">===Select===</button>
+                <div id="select_option" class="dropdown-content">
+                  <a href="#">nst</a>
+                  <a href="#">dmin</a>
+                  <a href="#">rms</a>
+                  <a href="#">gap</a>
+                  <a href="#">magType</a>
+                  <a href="#">title</a>
+                </div>
+              </div>
             <div>
               <label for="resto">Keyword</label>
               <input type="text" name="resto" id="resto">
@@ -37,7 +47,7 @@
           <h3>Earthquake Display</h3>
           <div id="map" class="box"></div>
           <ol class="rightbox" id="earthquake_list">
-            List of Earthquakes
+            Earthquake Description
           </ol>
           <div class="lds-ellipsis" id="data_load_animation">
             <div></div>
