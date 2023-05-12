@@ -1,12 +1,12 @@
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
   
   function injectHTML(list) {
     console.log("fired injectHTML");
-    const target = document.querySelector("#restaurant_list");
+    const target = document.querySelector("#earthquake_list");
     target.innerHTML = "";
     list.forEach((item) => {
       const str = `<li>${item.name}</li>`;
@@ -22,7 +22,7 @@ function getRandomIntInclusive(min, max) {
     });
   }
   
-  function cutRestaurantList(list) {
+  function cutEarthquakeList(list) {
     console.log("fired cut list");
     const range = [...Array(15).keys()];
     return (newArray = range.map((item) => {
@@ -32,7 +32,7 @@ function getRandomIntInclusive(min, max) {
   }
   
   function initMap(){
-    const carto = L.map('map').setView([38.98, -76.93], 13);
+    const carto = L.map('map').setView([38.98, -76.93], 2);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -57,11 +57,12 @@ function getRandomIntInclusive(min, max) {
   }
 
   async function mainEvent() {
-    // the async keyword means we can make API requests
-    const mainForm = document.querySelector(".main_form"); // This class name needs to be set on your form before you can listen for an event on it
+    const mainForm = document.querySelector(".main_form"); 
     const loadDataButton = document.querySelector("#data_load");
     const clearDataButton = document.querySelector("#data_clear");
     const generateListButton = document.querySelector("#generate");
+    const selectOptionButton = document.querySelector("#select_option");
+    const selectOptionContent = document.querySelector("#option_Content");
     const textField = document.querySelector("#resto");
   
     const loadAnimation = document.querySelector("#data_load_animation");
@@ -79,8 +80,7 @@ function getRandomIntInclusive(min, max) {
     let currentList = [];
   
     loadDataButton.addEventListener("click", async (submitEvent) => {
-      // async has to be declared on every function that needs to "await" something
-      console.log("Loading data"); // this is substituting for a "breakpoint"
+      console.log("Loading data"); 
       loadAnimation.style.display = "inline-block";
   
       const results = await fetch(
@@ -96,12 +96,11 @@ function getRandomIntInclusive(min, max) {
       }
       
       loadAnimation.style.display = "none";
-      // console.table(storedList);
     });
   
     generateListButton.addEventListener("click", (event) => {
       console.log("generate new list");
-      currentList = cutRestaurantList(parsedData);
+      currentList = cutEarthquakeList(parsedData);
       console.log(currentList);
       injectHTML(currentList);
       markerPlace(currentList, carto);
@@ -120,6 +119,11 @@ function getRandomIntInclusive(min, max) {
         localStorage.clear();
         console.log('localStorage Check', localStorage.getItem("storedData"));
     })
+
+    selectOptionButton.addEventListener("click", (event) => {
+        console.log('clear browser data');
+        selectOptionContent.classList.toggle('show');
+    })
   }
   
-  document.addEventListener("DOMContentLoaded", async () => mainEvent()); // the async keyword means we can make API requests
+  document.addEventListener("DOMContentLoaded", async () => mainEvent());
